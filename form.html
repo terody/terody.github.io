@@ -1,0 +1,46 @@
+<html>
+<head>
+  <title>Contact me</title>
+</head>
+
+<body>
+<form id="myForm">
+  <input type="text" name="name" placeholder="Name" required><br>
+  <input type="email" name="email" placeholder="Email" required><br>
+  <input type="text" name="phone" placeholder="Phone"><br>
+  <textarea name="message" placeholder="Message"></textarea><br>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  document.getElementById("myForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    
+    const formData = {
+      name: this.name.value,
+      email: this.email.value,
+      phone: this.phone.value,
+      message: this.message.value
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbzlegw7MBQiyJxy2-nzCZieUNGwGskEaqkExYRtczBQ2lV5QPYJADxHd4IHwA5OgPT2Tg/exec", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(response => {
+      alert("Form submitted!");
+    })
+    .catch(error => {
+      alert("Error submitting form");
+    });
+  });
+</script>
+<div align="center">
+  <p><small>(Powered by <a rel="nofollow" href="Un-static Forms">Un-static Forms</a>)</small></p>
+</div>
+</body>
+</html>
